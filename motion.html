@@ -32,7 +32,7 @@
     .hero h1 span { display:block; }
     .hero h1 .outline { -webkit-text-stroke:1.5px var(--ink); color:transparent; }
     .hero h1 .dot { color:#dfc900; display:inline; -webkit-text-stroke:0; }
-    .hero-bottom { display:grid; grid-template-columns: 1fr 1fr; align-items:end; gap:26px; margin-top:clamp(40px,6vw,88px); }
+    .hero-bottom { display:grid; grid-template-columns: 1fr 1fr; align-items:end; gap:26px; margin-top:clamp(30px,4vw,64px); }
     .hero-lead { max-width:520px; margin:0; font-size:clamp(16px,1.9vw,22px); line-height:1.55; font-weight:500; }
     .hero-meta { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:12px 30px; color:#777; text-transform:uppercase; font:500 11px "IBM Plex Mono",monospace; letter-spacing:.07em; }
     .section-header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:12px 20px; padding:28px clamp(20px,5vw,88px); border-bottom:1px solid var(--line); }
@@ -108,13 +108,13 @@
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; scroll-behavior:auto!important; transition:none!important; } }
   </style>
 </head>
-<body>
+<body id="top">
   <a class="toplink" href="#work" style="position:absolute;left:-9999px;top:auto" onfocus="this.style.left='12px';this.style.top='70px'" onblur="this.style.left='-9999px'">К проектам</a>
   <header class="topbar">
-    <a class="logo" href="./grid/">WOLFART®</a>
+    <a class="logo" href="#top" aria-label="WOLFART Design — наверх">WOLFART®</a>
     <span class="topmeta">Design System Lab</span>
     <span class="topmeta">Motion / Portfolio / 2026</span>
-    <a class="toplink" href="./grid/">← Вернуться к GRID</a>
+    <a class="toplink" href="#work">Смотреть работы ↓</a>
   </header>
   <main>
     <section class="hero" aria-labelledby="hero-title">
@@ -220,7 +220,7 @@
       <a href="mailto:wolfart.creative@gmail.com">Обсудить проект ↗</a>
     </section>
   </main>
-  <footer class="sitefoot"><span>© 2026 WOLFART Design</span><a href="./grid/">← GRID / Избранные работы</a><span>Web / Digital / Communication / Motion</span></footer>
+  <footer class="sitefoot"><span>© 2026 WOLFART Design</span><a href="#top">↑ Вернуться наверх</a><span>Web / Digital / Communication / Motion</span></footer>
   <script>
     (function () {
       document.querySelectorAll('.screen').forEach(function (screen) {
