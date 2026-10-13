@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff">
+  <meta name="description" content="WOLFART Design — motion-дизайн, анимация интерфейсов и объясняющие ролики. VIBECODING, USDT, DORMO.">
+  <title>MOTION / WOLFART Design — анимация и цифровые истории</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#101010; --muted:#686868; --line:#e5e5e5; --acid:#ffff00; --paper:#fff; }
+    *,*::before,*::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Manrope,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; }
+    button { font:inherit; }
+    button,a,video { -webkit-tap-highlight-color:transparent; }
+    :focus-visible { outline:3px solid #c5a900; outline-offset:4px; }
+    .mono { font-family:"IBM Plex Mono",Consolas,monospace; }
+    .topbar { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-bottom:1px solid var(--line); min-height:60px; }
+    .topbar>* { padding:17px 24px; display:flex; align-items:center; border-right:1px solid var(--line); min-width:0; }
+    .topbar>*:last-child { border-right:0; justify-content:flex-end; }
+    .logo { font-size:16px; font-weight:800; text-decoration:none; letter-spacing:-.035em; }
+    .topmeta { color:var(--muted); font:500 10px "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; }
+    .toplink { font:500 11px "IBM Plex Mono",monospace; text-decoration:none; letter-spacing:.04em; text-transform:uppercase; gap:10px; transition:background .2s; }
+    .toplink:hover { background:var(--acid); }
+    .hero { padding:clamp(45px,7vw,112px) clamp(20px,5vw,88px) 44px; border-bottom:1px solid var(--line); }
+    .eyebrow { margin:0 0 22px; color:#777; font-size:11px; letter-spacing:.19em; text-transform:uppercase; }
+    .hero h1 { margin:0; max-width:1450px; font-size:clamp(54px,11.6vw,200px); line-height:.84; letter-spacing:-.075em; font-weight:800; text-transform:uppercase; }
+    .hero h1 span { display:block; }
+    .hero h1 .outline { -webkit-text-stroke:1.5px var(--ink); color:transparent; }
+    .hero h1 .dot { color:#dfc900; display:inline; -webkit-text-stroke:0; }
+    .hero-bottom { display:grid; grid-template-columns: 1fr 1fr; align-items:end; gap:26px; margin-top:clamp(40px,6vw,88px); }
+    .hero-lead { max-width:520px; margin:0; font-size:clamp(16px,1.9vw,22px); line-height:1.55; font-weight:500; }
+    .hero-meta { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:12px 30px; color:#777; text-transform:uppercase; font:500 11px "IBM Plex Mono",monospace; letter-spacing:.07em; }
+    .section-header { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:12px 20px; padding:28px clamp(20px,5vw,88px); border-bottom:1px solid var(--line); }
+    .section-header h2 { margin:0; font-size:clamp(25px,3vw,39px); letter-spacing:-.055em; text-transform:uppercase; font-weight:800; }
+    .section-header .count { font:500 11px "IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.1em; color:#777; }
+    .project { display:grid; grid-template-columns:minmax(0,1fr) minmax(360px,1fr); border-bottom:1px solid var(--ink); min-width:0; }
+    .project:nth-of-type(even) .project-art { order:2; border-right:0; border-left:1px solid var(--line); }
+    .project-art { min-width:0; padding:clamp(20px,4.4vw,70px); background:#f5f5f3; border-right:1px solid var(--line); display:flex; justify-content:center; align-items:center; position:relative; }
+    .art-sidenote { position:absolute; top:24px; left:clamp(20px,4.4vw,70px); display:flex; align-items:center; gap:12px; font:500 10px "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:#777; }
+    .art-sidenote::before { content:""; display:block; width:8px; height:8px; background:var(--acid); border:1px solid var(--ink); }
+    .screen { position:relative; width:min(100%,330px); aspect-ratio:9/16; background:#131313; overflow:hidden; border:6px solid #121212; border-radius:19px; box-shadow:0 12px 35px rgba(0,0,0,.1); margin:36px auto 0; isolation:isolate; }
+    .screen video { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:black; display:none; }
+    .screen[data-ready="true"] video { display:block; }
+    .screen[data-ready="true"] .fallback { display:none; }
+    .fallback { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:24px 22px; color:white; overflow:hidden; }
+    .fallback .mini { position:relative; z-index:2; font:500 10px "IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.16em; opacity:.8; }
+    .fallback .visual { position:absolute; inset:0; display:grid; place-items:center; }
+    .fallback .titlecard { z-index:2; position:relative; font-weight:800; font-size:clamp(28px,3.5vw,44px); letter-spacing:-.06em; line-height:1.04; text-transform:uppercase; overflow-wrap:anywhere; }
+    .fallback .pending { z-index:2; position:relative; margin:10px 0 0; font:500 10px/1.5 "IBM Plex Mono",monospace; color:rgba(255,255,255,.73); }
+    .usdt { background:linear-gradient(153deg,#112722,#071411 64%,#151b1a); }
+    .usdt .token { display:grid; place-items:center; width:58%; aspect-ratio:1; border:1px solid #a6e7b7; border-radius:50%; font:800 clamp(45px,7vw,74px) Manrope,sans-serif; color:#c6ffd4; box-shadow:0 0 0 18px #8befa014,0 0 0 54px #8befa009; animation:float 7s ease-in-out infinite; }
+    .usdt .visual:before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent 97%,#78cb942b 97%),linear-gradient(0deg,transparent 97%,#78cb942b 97%); background-size:37px 37px; opacity:.34; }
+    .vibe { background:linear-gradient(150deg,#161617,#26272a); }
+    .vibe .code-shape { width:70%; height:38%; border:1px solid #b9ff38; border-radius:14px; padding:20px 14px; background:rgba(0,0,0,.36); display:flex; flex-direction:column; gap:15px; transform:rotate(-8deg); box-shadow:20px 25px 0 -8px #cfff5426; animation:float 8s ease-in-out infinite; }
+    .code-shape i { height:6px; width:67%; display:block; background:#b9ff38; }
+    .code-shape i:nth-child(2){width:95%;background:#b7b7b7}.code-shape i:nth-child(3){width:40%}.code-shape i:nth-child(4){width:78%;background:#b7b7b7}.code-shape i:nth-child(5){width:57%}
+    .dormo { background:linear-gradient(160deg,#a98587 0%,#535572 35%,#15243d 70%,#0a1123 100%); }
+    .dormo .moon { width:45%; aspect-ratio:1; border-radius:50%; background:#f6dbc1; box-shadow:0 0 48px #f2caa572,0 0 130px #f2caa53b; transform:translateY(-8%); animation:breath 6s ease-in-out infinite; }
+    .dormo .moon::after { content:""; position:absolute; width:100%; height:100%; background:linear-gradient(155deg,#3f4a6c,#10203c); border-radius:50%; transform:translate(30%,-28%); }
+    .project-copy { padding:clamp(36px,6vw,94px) clamp(24px,5vw,84px); display:flex; flex-direction:column; justify-content:center; }
+    .project-index { font:500 11px "IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.13em; color:#747474; }
+    .project-title { margin:23px 0 10px; font-size:clamp(43px,5.8vw,93px); font-weight:800; letter-spacing:-.065em; line-height:.95; text-transform:uppercase; overflow-wrap:anywhere; }
+    .project-subtitle { font-size:clamp(18px,2vw,26px); line-height:1.2; letter-spacing:-.03em; margin:5px 0 30px; font-weight:700; }
+    .project-description { margin:0 0 30px; max-width:520px; color:#565656; font-size:15px; line-height:1.8; }
+    .detail-grid { display:grid; grid-template-columns:120px 1fr; gap:0; border-top:1px solid var(--line); }
+    .detail-grid dt,.detail-grid dd { margin:0; padding:14px 0; border-bottom:1px solid var(--line); font-size:12px; line-height:1.6; }
+    .detail-grid dt { color:#858585; font:500 10px/1.7 "IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.07em; padding-right:10px; }
+    .detail-grid dd { color:#262626; }
+    .note { margin-top:30px; padding:14px 16px; background:#f8f8f8; border-left:3px solid #d0bc00; font:500 11px/1.7 "IBM Plex Mono",monospace; color:#777; }
+    .closing { padding:70px clamp(20px,5vw,88px) 90px; background:#111; color:white; }
+    .closing .eyebrow { color:#aaa; }
+    .closing h2 { margin:10px 0 26px; font-size:clamp(40px,7vw,112px); line-height:.95; letter-spacing:-.065em; font-weight:800; max-width:1050px; text-transform:uppercase; }
+    .closing p { max-width:600px; color:#b4b4b4; line-height:1.8; }
+    .closing a { display:inline-block; margin:24px 0 0; text-decoration:none; background:var(--acid); color:black; padding:16px 20px; font:600 11px "IBM Plex Mono",monospace; letter-spacing:.07em; text-transform:uppercase; }
+    .closing a:hover { background:white; }
+    .sitefoot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; padding:25px clamp(20px,5vw,88px) 90px; color:#7e7e7e; font:500 10px "IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; }
+    .sitefoot a { text-decoration:none; }
+    .sitefoot a:hover { color:black; }
+    @keyframes float { 0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-10px) rotate(-8deg)} }
+    @keyframes breath { 0%,100%{opacity:.8}50%{opacity:1} }
+    .usdt .token { animation-name:none; }
+    @media (max-width:900px) {
+      .topbar { grid-template-columns:1fr 1fr; }
+      .topbar>*:nth-child(2),.topbar>*:nth-child(3) { display:none; }
+      .project { grid-template-columns:1fr; }
+      .project:nth-of-type(even) .project-art { order:0; border:0; border-bottom:1px solid var(--line); }
+      .project-art { border:0; border-bottom:1px solid var(--line); padding:56px 20px 46px; }
+      .art-sidenote { left:20px; top:17px; }
+      .project-copy { padding:43px 22px 55px; }
+      .screen { max-width:300px; margin:22px auto 0; }
+      .hero-bottom { grid-template-columns:1fr; }
+      .hero-meta { justify-content:flex-start; }
+    }
+    @media (max-width:540px) {
+      .topbar>* { padding:15px 20px; }
+      .hero h1 { font-size:clamp(43px,12.2vw,72px); }
+      .hero { padding-bottom:34px; }
+      .project-title { font-size:clamp(38px,12vw,70px); }
+      .detail-grid { grid-template-columns:97px 1fr; }
+      .screen { width:min(100%,275px); }
+      .sitefoot { padding-bottom:30px; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; scroll-behavior:auto!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <a class="toplink" href="#work" style="position:absolute;left:-9999px;top:auto" onfocus="this.style.left='12px';this.style.top='70px'" onblur="this.style.left='-9999px'">К проектам</a>
+  <header class="topbar">
+    <a class="logo" href="./grid">WOLFART®</a>
+    <span class="topmeta">Design System Lab</span>
+    <span class="topmeta">Motion / Portfolio / 2026</span>
+    <a class="toplink" href="./grid">← Вернуться к GRID</a>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow mono">Коммуникационный дизайн / Motion studies</p>
+      <h1 id="hero-title"><span>Идея</span><span class="outline">в движении<span class="dot">.</span></span></h1>
+      <div class="hero-bottom">
+        <p class="hero-lead">Анимированные интерфейсы и объясняющие ролики. Движение здесь не ради эффекта: оно помогает выстроить внимание, объяснить мысль и задать ритм истории.</p>
+        <div class="hero-meta"><span>UI Motion / Explainers</span><span>03 проекта ↓</span></div>
+      </div>
+    </section>
+    <div class="section-header" id="work">
+      <h2>Motion / Избранные работы</h2>
+      <span class="count">01—03 / 2026</span>
+    </div>
+    <article class="project" id="vibecoding" aria-labelledby="title-vibe">
+      <div class="project-art">
+        <span class="art-sidenote">01 / Explainer</span>
+        <div class="screen" data-ready="false">
+          <div class="fallback vibe" aria-live="polite">
+            <span class="mini">WOLFART / MOTION</span>
+            <div class="visual" aria-hidden="true"><div class="code-shape"><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div><div class="titlecard">VIBE<br>CODING</div><p class="pending">Видеофайл ожидает публикации</p></div>
+          </div>
+          <video controls playsinline preload="metadata" aria-label="Анимационный ролик о вайбкодинге" controlslist="nodownload">
+            <source src="./media/VIBECODING_1080x1920_60fps.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео HTML5.
+          </video>
+        </div>
+      </div>
+      <div class="project-copy">
+        <span class="project-index">01 / Короткий объясняющий ролик</span>
+        <h2 id="title-vibe" class="project-title">Vibe<br>coding</h2>
+        <p class="project-subtitle">Сложный процесс — понятная история</p>
+        <p class="project-description">Как рассказать о новом подходе к созданию цифровых продуктов так, чтобы зритель понял принцип без длинного технического объяснения? В основе — последовательная подача информации, ритм, типографические акценты и движение элементов в кадре.</p>
+        <dl class="detail-grid">
+          <dt>Задача</dt><dd>Объяснение технологической темы в коротком видеоформате</dd>
+          <dt>Фокус</dt><dd>Иерархия, последовательность сцен, динамическая типографика</dd>
+          <dt>Формат</dt><dd>Вертикальное видео 9:16 · 1080 × 1920 · 60 fps</dd>
+        </dl>
+        <p class="note">Концептуальный проект WOLFART Design. Звуковое оформление в разработке.</p>
+      </div>
+    </article>
+    <article class="project" id="usdt" aria-labelledby="title-usdt">
+      <div class="project-art">
+        <span class="art-sidenote">02 / Finance explainer</span>
+        <div class="screen" data-ready="false">
+          <div class="fallback usdt" aria-live="polite">
+            <span class="mini">WOLFART / MOTION</span>
+            <div class="visual" aria-hidden="true"><div class="token">₮</div></div>
+            <div><div class="titlecard">USDT</div><p class="pending">Видеофайл ожидает публикации</p></div>
+          </div>
+          <video controls playsinline preload="metadata" aria-label="Объясняющий ролик о USDT" controlslist="nodownload">
+            <source src="./media/USDT_1080x1920_60fps.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео HTML5.
+          </video>
+        </div>
+      </div>
+      <div class="project-copy">
+        <span class="project-index">02 / Финансовая инфографика</span>
+        <h2 id="title-usdt" class="project-title">USDT</h2>
+        <p class="project-subtitle">Финансовая тема без визуального шума</p>
+        <p class="project-description">Объясняющий ролик для аудитории, которая только знакомится с криптовалютами. Задача — организовать информацию в ясный визуальный маршрут, выделить ключевые понятия и поддержать понимание анимацией, не перегружая экран деталями.</p>
+        <dl class="detail-grid">
+          <dt>Задача</dt><dd>Визуальное объяснение темы для начинающей аудитории</dd>
+          <dt>Фокус</dt><dd>Инфографика, темп повествования, типографическая ясность</dd>
+          <dt>Формат</dt><dd>Вертикальное видео 9:16 · 1080 × 1920 · 60 fps</dd>
+        </dl>
+        <p class="note">Концептуальный проект WOLFART Design. Звуковое оформление в разработке.</p>
+      </div>
+    </article>
+    <article class="project" id="dormo" aria-labelledby="title-dormo">
+      <div class="project-art">
+        <span class="art-sidenote">03 / Interface motion</span>
+        <div class="screen" data-ready="false">
+          <div class="fallback dormo" aria-live="polite">
+            <span class="mini">WOLFART / MOTION</span>
+            <div class="visual" aria-hidden="true"><div class="moon"></div></div>
+            <div><div class="titlecard">DORMO</div><p class="pending">Видеофайл ожидает публикации</p></div>
+          </div>
+          <video controls playsinline preload="metadata" aria-label="Анимация интерфейса приложения Dormo" controlslist="nodownload">
+            <source src="./media/DORMO_1080x1920_60fps.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео HTML5.
+          </video>
+        </div>
+      </div>
+      <div class="project-copy">
+        <span class="project-index">03 / Приложение для сна</span>
+        <h2 id="title-dormo" class="project-title">Dormo</h2>
+        <p class="project-subtitle">Выключи день</p>
+        <p class="project-description">Рекламная концепция приложения для засыпания. Интерфейс ведёт зрителя от потока уведомлений к одному спокойному действию: шум постепенно исчезает, движение замедляется, цвет переходит от тёплого к глубокому ночному синему.</p>
+        <dl class="detail-grid">
+          <dt>Задача</dt><dd>Показать ценность приложения через анимацию самого интерфейса</dd>
+          <dt>Фокус</dt><dd>UI-переходы, микроанимация, состояние и атмосфера</dd>
+          <dt>Формат</dt><dd>Вертикальное видео 9:16 · 1080 × 1920 · 60 fps</dd>
+        </dl>
+        <p class="note">Концептуальный проект WOLFART Design. Звуковое оформление в разработке.</p>
+      </div>
+    </article>
+    <section class="closing">
+      <p class="eyebrow mono">Подход / Motion design</p>
+      <h2>Важен не эффект.<br>Важен смысл<span style="color:var(--acid)">.</span></h2>
+      <p>Эти проекты исследуют, как анимация помогает объяснять, показывать интерфейсы и делать визуальную коммуникацию понятнее. Проекты создаются с использованием генеративных инструментов и кода; структура, отбор и визуальное направление — результат дизайнерской работы.</p>
+      <a href="mailto:wolfart.creative@gmail.com">Обсудить проект ↗</a>
+    </section>
+  </main>
+  <footer class="sitefoot"><span>© 2026 WOLFART Design</span><a href="./grid">← GRID / Избранные работы</a><span>Web / Digital / Communication / Motion</span></footer>
+  <script>
+    (function () {
+      document.querySelectorAll('.screen').forEach(function (screen) {
+        var video = screen.querySelector('video');
+        if (!video) return;
+        video.addEventListener('loadedmetadata', function () { screen.dataset.ready='true'; });
+        video.addEventListener('error', function () { screen.dataset.ready='false'; });
+        var source = video.querySelector('source');
+        if (source) source.addEventListener('error', function () { screen.dataset.ready='false'; });
+      });
+    })();
+  </script>
+</body>
+</html>
