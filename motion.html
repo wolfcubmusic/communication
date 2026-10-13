@@ -44,10 +44,13 @@
     .art-sidenote { position:absolute; top:24px; left:clamp(20px,4.4vw,70px); display:flex; align-items:center; gap:12px; font:500 10px "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:#777; }
     .art-sidenote::before { content:""; display:block; width:8px; height:8px; background:var(--acid); border:1px solid var(--ink); }
     .screen { position:relative; width:min(100%,330px); aspect-ratio:9/16; background:#131313; overflow:hidden; border:6px solid #121212; border-radius:19px; box-shadow:0 12px 35px rgba(0,0,0,.1); margin:36px auto 0; isolation:isolate; }
-    .screen video { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:black; display:none; }
-    .screen[data-ready="true"] video { display:block; }
-    .screen[data-ready="true"] .fallback { display:none; }
-    .fallback { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:24px 22px; color:white; overflow:hidden; }
+    .screen video { position:absolute; inset:0; z-index:1; width:100%; height:100%; object-fit:contain; background:black; opacity:0; pointer-events:none; }
+    .screen[data-playing="true"] video { opacity:1; pointer-events:auto; }
+    .screen[data-playing="true"] .fallback { opacity:0; visibility:hidden; pointer-events:none; }
+    .fallback { position:absolute; z-index:2; inset:0; display:flex; flex-direction:column; justify-content:space-between; padding:24px 22px; color:white; overflow:hidden; }
+    .poster-play { position:absolute; z-index:5; left:50%; top:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:66px; height:66px; padding:0 0 0 3px; border:1px solid rgba(255,255,255,.65); border-radius:50%; background:rgba(10,10,10,.56); color:#fff; font-size:22px; cursor:pointer; box-shadow:0 5px 28px rgba(0,0,0,.25); transition:transform .2s,background .2s; }
+    .poster-play:hover,.poster-play:focus-visible { background:#101010; transform:translate(-50%,-50%) scale(1.08); }
+    .poster-play:focus-visible { outline:3px solid #ffff00; outline-offset:4px; }
     .fallback .mini { position:relative; z-index:2; font:500 10px "IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.16em; opacity:.8; }
     .fallback .visual { position:absolute; inset:0; display:grid; place-items:center; }
     .fallback .titlecard { z-index:2; position:relative; font-weight:800; font-size:clamp(28px,3.5vw,44px); letter-spacing:-.06em; line-height:1.04; text-transform:uppercase; overflow-wrap:anywhere; }
@@ -132,11 +135,12 @@
     <article class="project" id="vibecoding" aria-labelledby="title-vibe">
       <div class="project-art">
         <span class="art-sidenote">01 / Explainer</span>
-        <div class="screen" data-ready="false">
+        <div class="screen" data-playing="false">
           <div class="fallback vibe" aria-live="polite">
+            <button class="poster-play" type="button" aria-label="Воспроизвести VIBECODING" title="Воспроизвести VIBECODING">▶</button>
             <span class="mini">WOLFART / MOTION</span>
             <div class="visual" aria-hidden="true"><div class="code-shape"><i></i><i></i><i></i><i></i><i></i></div></div>
-            <div><div class="titlecard">VIBE<br>CODING</div><p class="pending">Видеофайл ожидает публикации</p></div>
+            <div><div class="titlecard">VIBE<br>CODING</div><p class="pending">Нажмите ▶, чтобы посмотреть</p></div>
           </div>
           <video controls playsinline preload="metadata" aria-label="Анимационный ролик о вайбкодинге" controlslist="nodownload">
             <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_2zV2PdAZJ8HKfqtmdirWHd0cpVq/8c2bbb3f-893c-47fc-8e46-45bc6db6d887.mp4" type="video/mp4">
@@ -160,11 +164,12 @@
     <article class="project" id="usdt" aria-labelledby="title-usdt">
       <div class="project-art">
         <span class="art-sidenote">02 / Finance explainer</span>
-        <div class="screen" data-ready="false">
+        <div class="screen" data-playing="false">
           <div class="fallback usdt" aria-live="polite">
+            <button class="poster-play" type="button" aria-label="Воспроизвести USDT" title="Воспроизвести USDT">▶</button>
             <span class="mini">WOLFART / MOTION</span>
             <div class="visual" aria-hidden="true"><div class="token">₮</div></div>
-            <div><div class="titlecard">USDT</div><p class="pending">Видеофайл ожидает публикации</p></div>
+            <div><div class="titlecard">USDT</div><p class="pending">Нажмите ▶, чтобы посмотреть</p></div>
           </div>
           <video controls playsinline preload="metadata" aria-label="Объясняющий ролик о USDT" controlslist="nodownload">
             <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_2zV2PdAZJ8HKfqtmdirWHd0cpVq/49e635eb-4064-4880-b75f-3a27ec34ccdc.mp4" type="video/mp4">
@@ -188,11 +193,12 @@
     <article class="project" id="dormo" aria-labelledby="title-dormo">
       <div class="project-art">
         <span class="art-sidenote">03 / Interface motion</span>
-        <div class="screen" data-ready="false">
+        <div class="screen" data-playing="false">
           <div class="fallback dormo" aria-live="polite">
+            <button class="poster-play" type="button" aria-label="Воспроизвести DORMO" title="Воспроизвести DORMO">▶</button>
             <span class="mini">WOLFART / MOTION</span>
             <div class="visual" aria-hidden="true"><div class="moon"></div></div>
-            <div><div class="titlecard">DORMO</div><p class="pending">Видеофайл ожидает публикации</p></div>
+            <div><div class="titlecard">DORMO</div><p class="pending">Нажмите ▶, чтобы посмотреть</p></div>
           </div>
           <video controls playsinline preload="metadata" aria-label="Анимация интерфейса приложения Dormo" controlslist="nodownload">
             <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_2zV2PdAZJ8HKfqtmdirWHd0cpVq/7a829fe3-3a0c-4a8d-80c8-da4b0fdbc57d.mp4" type="video/mp4">
@@ -225,11 +231,29 @@
     (function () {
       document.querySelectorAll('.screen').forEach(function (screen) {
         var video = screen.querySelector('video');
-        if (!video) return;
-        video.addEventListener('loadedmetadata', function () { screen.dataset.ready='true'; });
-        video.addEventListener('error', function () { screen.dataset.ready='false'; });
-        var source = video.querySelector('source');
-        if (source) source.addEventListener('error', function () { screen.dataset.ready='false'; });
+        var playButton = screen.querySelector('.poster-play');
+        var status = screen.querySelector('.pending');
+        if (!video || !playButton) return;
+        playButton.addEventListener('click', function () {
+          var attempt = video.play();
+          if (attempt && typeof attempt.catch === 'function') {
+            attempt.catch(function () {
+              screen.dataset.playing = 'false';
+              if (status) status.textContent = 'Не удалось начать воспроизведение';
+            });
+          }
+        });
+        video.addEventListener('playing', function () {
+          screen.dataset.playing = 'true';
+        });
+        video.addEventListener('ended', function () {
+          screen.dataset.playing = 'false';
+          video.currentTime = 0;
+        });
+        video.addEventListener('error', function () {
+          screen.dataset.playing = 'false';
+          if (status) status.textContent = 'Видео временно недоступно';
+        });
       });
     })();
   </script>
