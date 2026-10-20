@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff">
-  <meta name="description" content="WOLFART Design — motion-дизайн, анимация интерфейсов и объясняющие ролики. VIBECODING, USDT, DORMO.">
+  <meta name="description" content="WOLFART Design — motion-дизайн, анимация интерфейсов и объясняющие ролики. Вайбкодинг, USDT, Dormo и образовательная инфографика.">
   <title>MOTION / WOLFART Design — анимация и цифровые истории</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +109,14 @@
       .sitefoot { padding-bottom:30px; }
     }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; scroll-behavior:auto!important; transition:none!important; } }
+
+    /* Two landscape educational explainers, visually aligned with the existing portfolio. */
+    .project-art.wide-art { padding:clamp(24px,3.8vw,60px); }
+    .landscape-screen { width:min(100%,760px); margin:34px auto 0; aspect-ratio:16/9; background:#f1eee7; border:1px solid #d5d5d5; box-shadow:0 18px 55px rgba(0,0,0,.12); border-radius:8px; overflow:hidden; }
+    .landscape-screen video { display:block; width:100%; height:100%; object-fit:contain; background:#f1eee7; }
+    .wide-project .project-title { font-size:clamp(41px,5.1vw,82px); }
+    @media (max-width:900px) { .project-art.wide-art{padding:50px 20px 45px;} .landscape-screen{margin:18px auto 0;} }
+    @media (max-width:540px) { .landscape-screen{border-radius:5px;} .wide-project .project-title{font-size:clamp(38px,11vw,70px);} }
   </style>
 </head>
 <body id="top">
@@ -125,12 +133,12 @@
       <h1 id="hero-title"><span>Идея</span><span class="outline">в движении<span class="dot">.</span></span></h1>
       <div class="hero-bottom">
         <p class="hero-lead">Анимированные интерфейсы и объясняющие ролики. Движение здесь не ради эффекта: оно помогает выстроить внимание, объяснить мысль и задать ритм истории.</p>
-        <div class="hero-meta"><span>UI Motion / Explainers</span><span>03 проекта ↓</span></div>
+        <div class="hero-meta"><span>UI Motion / Explainers</span><span>05 проектов ↓</span></div>
       </div>
     </section>
     <div class="section-header" id="work">
       <h2>Motion / Избранные работы</h2>
-      <span class="count">01—03 / 2026</span>
+      <span class="count">01—05 / 2026</span>
     </div>
     <article class="project" id="vibecoding" aria-labelledby="title-vibe">
       <div class="project-art">
@@ -217,6 +225,53 @@
           <dt>Формат</dt><dd>Вертикальное видео 9:16 · 1080 × 1920 · 60 fps</dd>
         </dl>
         <p class="note">Концептуальный проект WOLFART Design. Звуковое оформление в разработке.</p>
+      </div>
+    </article>
+
+    <article class="project wide-project" id="vibecoding-story" aria-labelledby="title-vibecoding-story">
+      <div class="project-art wide-art">
+        <span class="art-sidenote">04 / Educational explainer</span>
+        <div class="landscape-screen">
+          <video controls playsinline preload="none" poster="motion-media/vibecoding_story_poster.webp" aria-label="Вайбкодинг — от идеи до приложения, анимационный ролик 56 секунд">
+            <source src="motion-media/vibecoding_story_ru.mp4" type="video/mp4">
+            Ваш браузер не поддерживает воспроизведение видео.
+          </video>
+        </div>
+      </div>
+      <div class="project-copy">
+        <span class="project-index">04 / Explainer video · 16:9</span>
+        <h2 id="title-vibecoding-story" class="project-title">Vibe<br>coding / Story</h2>
+        <p class="project-subtitle">От идеи до готового приложения</p>
+        <p class="project-description">Объясняющий ролик с сюжетом: от идеи человека и сложного пути разработки — к диалогу с AI и созданию интерфейса записи на мастер-класс. В фокусе — визуальное повествование и анимация цифрового продукта.</p>
+        <dl class="detail-grid">
+          <dt>Задача</dt><dd>Доступно объяснить возможности вайбкодинга через узнаваемую ситуацию</dd>
+          <dt>Фокус</dt><dd>Сторителлинг, UI motion, ясная графика, ритм</dd>
+          <dt>Формат</dt><dd>Горизонтальное видео 16:9 · 1920 × 1080 · 30 fps · 56 сек.</dd>
+        </dl>
+        <p class="note">Авторский motion-проект WOLFART Design. Анимация и сборка с использованием Claude Code.</p>
+      </div>
+    </article>
+    <article class="project wide-project" id="vibecoding-guide" aria-labelledby="title-vibecoding-guide">
+      <div class="project-art wide-art">
+        <span class="art-sidenote">05 / Motion infographic</span>
+        <div class="landscape-screen">
+          <video controls playsinline preload="none" poster="motion-media/vibecoding_guide_poster.webp" aria-label="Вайбкодинг — объяснение по шагам, анимационный ролик 58 секунд">
+            <source src="motion-media/vibecoding_guide_ru.mp4" type="video/mp4">
+            Ваш браузер не поддерживает воспроизведение видео.
+          </video>
+        </div>
+      </div>
+      <div class="project-copy">
+        <span class="project-index">05 / Explainer video · 16:9</span>
+        <h2 id="title-vibecoding-guide" class="project-title">Vibe<br>coding / Guide</h2>
+        <p class="project-subtitle">Сложное — по шагам</p>
+        <p class="project-description">Образовательная motion-инфографика о работе с AI: как сформулировать запрос, уточнять результат, выбрать инструмент и учитывать риски. Схемы, карточки, типографика и интерфейсные примеры организованы в последовательный рассказ.</p>
+        <dl class="detail-grid">
+          <dt>Задача</dt><dd>Превратить техническую тему в наглядное объяснение для новичка</dd>
+          <dt>Фокус</dt><dd>Информационная иерархия, инфографика, динамическая типографика</dd>
+          <dt>Формат</dt><dd>Горизонтальное видео 16:9 · 1920 × 1080 · 30 fps · 58 сек.</dd>
+        </dl>
+        <p class="note">Авторский motion-проект WOLFART Design. Анимация и сборка с использованием Claude Code.</p>
       </div>
     </article>
     <section class="closing">
